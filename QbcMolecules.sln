@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QbcMoleculesApp", "QbcMoleculesApp\QbcMoleculesApp.csproj", "{5E61B91B-70EA-45D1-A71D-F94CCD47A52F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QbcMoleculesBusinessLogic", "QbcMoleculesBusinessLogic\QbcMoleculesBusinessLogic.csproj", "{6564D280-DBCC-46DE-B986-D5C6A93A3190}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E61B91B-70EA-45D1-A71D-F94CCD47A52F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E61B91B-70EA-45D1-A71D-F94CCD47A52F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E61B91B-70EA-45D1-A71D-F94CCD47A52F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E61B91B-70EA-45D1-A71D-F94CCD47A52F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6564D280-DBCC-46DE-B986-D5C6A93A3190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6564D280-DBCC-46DE-B986-D5C6A93A3190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6564D280-DBCC-46DE-B986-D5C6A93A3190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6564D280-DBCC-46DE-B986-D5C6A93A3190}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E15ECC09-B32B-42EB-80D3-4F38A90B1CD7}
+	EndGlobalSection
+EndGlobal
