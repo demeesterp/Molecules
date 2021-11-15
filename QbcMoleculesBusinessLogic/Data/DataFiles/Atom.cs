@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QbcMoleculesBusinessLogic.Data.Molecules
+namespace QbcMoleculesBusinessLogic.Data.DataFiles
 {
     public class Atom
     {
