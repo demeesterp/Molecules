@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
+namespace QbcMoleculesBusinessLogic.Data.CmdArgs
 {
-    public interface IMoleculeCalculationCoordinationCmd
+    public class DataCollectionInfo
     {
     }
 }

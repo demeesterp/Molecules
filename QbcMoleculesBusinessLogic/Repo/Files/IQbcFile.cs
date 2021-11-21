@@ -12,5 +12,9 @@ namespace QbcMoleculesBusinessLogic.Repo.Files
 
         void WriteText(string path, string content);
 
+        List<string> FindFiles(string path, string pattern);
+
+        List<string> FindDirectories(string path, string pattern);
+
     }
 }

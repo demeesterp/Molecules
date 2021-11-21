@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QbcMoleculesBusinessLogic.Repo.Files
+﻿namespace QbcMoleculesBusinessLogic.Repo.Files
 {
     public class QbcFile : IQbcFile
     {
+        public List<string> FindDirectories(string path, string pattern)
+        {
+            return new List<string>(Directory.EnumerateDirectories(path, pattern, SearchOption.TopDirectoryOnly));
+        }
+
+        public List<string> FindFiles(string path, string pattern)
+        {
+            return new List<string>(Directory.EnumerateFiles(path,pattern, SearchOption.TopDirectoryOnly));
+        }
+
         public string ReadText(string path)
         {
             if ( File.Exists(path))

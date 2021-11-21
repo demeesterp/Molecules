@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 {
-    public class MoleculeDataCollectionCmd : IMoleculeDataCollectionCmd
+    public class MolDataCompilationCmd : IMolDataCompilationCmd
     {
     }
 }

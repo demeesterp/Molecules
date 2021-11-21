@@ -25,8 +25,9 @@ namespace QbcMoleculesBusinessLogic
             services.AddTransient<IMoleculeFileRepo, MoleculeFileRepo>();
 
             // Commands
-            services.AddTransient<IMoleculeDataCollectionCmd, MoleculeDataCollectionCmd>();
-            services.AddTransient<IMoleculeCalculationCoordinationCmd, MoleculeCalculationCoordinationCmd>();
+            services.AddTransient<IMolDataCompilationCmd, MolDataCompilationCmd>();
+            services.AddTransient<IMolCalcCoordCmd, MolCalcCoordCmd>();
+            services.AddTransient<IMolCalcInitCmd, MolCalcInitCmd>();
             
             // Parsers and generators
             services.AddTransient<IXyzParser, XyzParser>();
