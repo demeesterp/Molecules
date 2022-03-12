@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using QbcMoleculesBusinessLogic.Business.Generator;
+using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Business.Parser;
 using QbcMoleculesBusinessLogic.Business.ProcessingCommand;
 using QbcMoleculesBusinessLogic.Business.Processor;
@@ -20,6 +21,7 @@ namespace QbcMoleculesBusinessLogic
             services.AddTransient<IQbcResource, QbcResource>();
             services.AddTransient<IAtomInfoRepo, AtomInfoRepo>();
             services.AddTransient<IBasissetInfoRepo, BasissetInfoRepo>();
+            services.AddTransient<IQbcLogger, QbcLogger>();
             
             
             // Repositories

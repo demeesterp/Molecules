@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "QbcMoleculesApp": {
+      "commandName": "Project",
+      "commandLineArgs": "-processcalculation path=C:\\TestData"
+    }
+  }
+}

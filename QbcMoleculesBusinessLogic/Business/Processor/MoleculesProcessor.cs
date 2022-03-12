@@ -1,4 +1,5 @@
 ﻿using QbcMoleculesBusinessLogic.Business.Logging;
+using QbcMoleculesBusinessLogic.Business.ProcessingCommand;
 using QbcMoleculesBusinessLogic.Data.ProcessCommands;
 
 namespace QbcMoleculesBusinessLogic.Business.Processor
@@ -10,10 +11,13 @@ namespace QbcMoleculesBusinessLogic.Business.Processor
 
         private IQbcLogger Logger { get; }
 
+        private IMolCalcInitCmd MolCalcInitCmd { get; }
+
         #endregion
 
-        public MoleculesProcessor(IQbcLogger logger)
+        public MoleculesProcessor(IMolCalcInitCmd molCalcInitCmd, IQbcLogger logger)
         {
+            MolCalcInitCmd = molCalcInitCmd;
             Logger = logger;
         }
 
@@ -26,8 +30,8 @@ namespace QbcMoleculesBusinessLogic.Business.Processor
                     Logger.LogWarning($"Command {qbcCmd.Name}");
                     await Task.CompletedTask;
                     break;
-                case QbcCmdName.procescalculation:
-                    Logger.LogWarning($"Command {qbcCmd.Name}");
+                case QbcCmdName.processcalculation:
+                    Logger.LogInformation($"Command {qbcCmd.Name}");
                     await Task.CompletedTask;
                     break;
                 default:

@@ -10,7 +10,7 @@ namespace QbcMoleculesBusinessLogic.Data.ProcessCommands
     public enum QbcCmdName
     {
         dummy = 0,
-        procescalculation = 1
+        processcalculation = 1
     }
 
 
@@ -20,11 +20,13 @@ namespace QbcMoleculesBusinessLogic.Data.ProcessCommands
         public QbcCmd()
         {
             Name = QbcCmdName.dummy;
+            Parameters = new List<QbcCmdParameter>();
         }
 
         public QbcCmd(string name)
         {
             Name = Convert(name);
+            Parameters = new List<QbcCmdParameter>();
         }
 
 

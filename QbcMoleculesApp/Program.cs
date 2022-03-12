@@ -13,8 +13,8 @@ var processor = services.BuildServiceProvider()
 if ( processor != null)
 {
     Console.WriteLine("Start processing");
-    List<Task> currentTasks = new();    
-    foreach(var cmd in QbcCmdInterpreter.BuildCmd(Environment.CommandLine))
+    List<Task> currentTasks = new();
+    foreach (var cmd in QbcCmdInterpreter.BuildCmd(Environment.GetCommandLineArgs()))
     {
         currentTasks.Add(processor.ProcessAsync(cmd));
     }
@@ -25,4 +25,6 @@ else
 {
     Console.WriteLine("Failed to start services");
 }
+
+Console.ReadLine();
 
