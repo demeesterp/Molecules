@@ -2,6 +2,7 @@
 using QbcMoleculesBusinessLogic.Business.Generator;
 using QbcMoleculesBusinessLogic.Business.Parser;
 using QbcMoleculesBusinessLogic.Business.ProcessingCommand;
+using QbcMoleculesBusinessLogic.Business.Processor;
 using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
 using QbcMoleculesBusinessLogic.Repo.Formatter;
@@ -23,6 +24,10 @@ namespace QbcMoleculesBusinessLogic
             
             // Repositories
             services.AddTransient<IMoleculeFileRepo, MoleculeFileRepo>();
+
+            // Procerssors
+            services.AddTransient<IMoleculesProcessor, MoleculesProcessor>();
+
 
             // Commands
             services.AddTransient<IMolDataCompilationCmd, MolDataCompilationCmd>();
