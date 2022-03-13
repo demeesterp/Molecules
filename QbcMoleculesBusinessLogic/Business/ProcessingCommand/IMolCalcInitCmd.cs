@@ -10,7 +10,7 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
     public interface IMolCalcInitCmd
     {
 
-        CalcInitResult Process(CalcInitInfo initInfo);
+        Task<CalcInitResult> ProcessAsync(CalcInitInfo initInfo);
 
     }
 }

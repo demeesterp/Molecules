@@ -35,6 +35,7 @@ namespace QbcMoleculesBusinessLogic
             services.AddTransient<IMolDataCompilationCmd, MolDataCompilationCmd>();
             services.AddTransient<IMolCalcCoordCmd, MolCalcCoordCmd>();
             services.AddTransient<IMolCalcInitCmd, MolCalcInitCmd>();
+            services.AddTransient<IMolCalcCmd, MolCalcCmd>();
             
             // Parsers and generators
             services.AddTransient<IXyzParser, XyzParser>();

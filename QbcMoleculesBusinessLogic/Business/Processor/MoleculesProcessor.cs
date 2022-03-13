@@ -1,5 +1,6 @@
 ﻿using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Business.ProcessingCommand;
+using QbcMoleculesBusinessLogic.Data.CmdArgs;
 using QbcMoleculesBusinessLogic.Data.ProcessCommands;
 
 namespace QbcMoleculesBusinessLogic.Business.Processor
@@ -11,14 +12,14 @@ namespace QbcMoleculesBusinessLogic.Business.Processor
 
         private IQbcLogger Logger { get; }
 
-        private IMolCalcInitCmd MolCalcInitCmd { get; }
+        private IMolCalcCmd MolCalcCmd { get; }
 
         #endregion
 
-        public MoleculesProcessor(IMolCalcInitCmd molCalcInitCmd, IQbcLogger logger)
+        public MoleculesProcessor(IMolCalcCmd molCalcCmd, IQbcLogger logger)
         {
-            MolCalcInitCmd = molCalcInitCmd;
             Logger = logger;
+            MolCalcCmd = molCalcCmd;
         }
 
 
@@ -32,6 +33,21 @@ namespace QbcMoleculesBusinessLogic.Business.Processor
                     break;
                 case QbcCmdName.processcalculation:
                     Logger.LogInformation($"Command {qbcCmd.Name}");
+                    var param = qbcCmd.Parameters.Find(i => i.Name.ToLower() == "path");
+                    if (param != null)
+                    {
+                        await this.MolCalcCmd.ProcessAsync(new MolCalcCmdInfo()
+                        {
+                            BasePath = param.Value
+                        });
+                    }
+                    else
+                    {
+                        await this.MolCalcCmd.ProcessAsync(new MolCalcCmdInfo()
+                        {
+                            BasePath = Environment.CurrentDirectory
+                        });
+                    }                    
                     await Task.CompletedTask;
                     break;
                 default:

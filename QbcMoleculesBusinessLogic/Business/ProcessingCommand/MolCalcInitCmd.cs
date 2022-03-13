@@ -1,6 +1,7 @@
 ﻿using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Business.Parser;
 using QbcMoleculesBusinessLogic.Data.CmdArgs;
+using QbcMoleculesBusinessLogic.Data.Molecules;
 using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
 
@@ -29,14 +30,14 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
             MoleculeFileRepo = moleculeFileRepo ?? throw new ArgumentNullException(nameof(moleculeFileRepo));
         }
 
-        public CalcInitResult Process(CalcInitInfo initInfo)
+        public async Task<CalcInitResult> ProcessAsync(CalcInitInfo initInfo)
         {
             QbcLogger.LogInformation($"MolCalcInit {initInfo.BaseDir}");
             CalcInitResult calcInitResult = new();
             foreach (string xyzFile in QbcFile.FindFiles(initInfo.BaseDir, "*.xyz"))
             {
                 string xyzdata = QbcFile.ReadText(xyzFile);
-                var result = XyzParser.Parse(xyzdata);                
+                Molecule? result = XyzParser.Parse(xyzdata);                
                 if (result != null)
                 {
                     result.NameInfo = Path.GetFileNameWithoutExtension(xyzFile);
@@ -44,7 +45,7 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                     calcInitResult.Result.Add(result);
                 }
             }
-            return calcInitResult;
+            return await Task.FromResult(calcInitResult);
         }
     }
 }
