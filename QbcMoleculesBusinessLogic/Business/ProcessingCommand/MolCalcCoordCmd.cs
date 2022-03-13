@@ -1,6 +1,5 @@
 ﻿using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Data.CmdArgs;
-using QbcMoleculesBusinessLogic.Data.Molecules;
 using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
 
@@ -29,7 +28,7 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 
 
 
-        public Task<CalcCoordResult> ProcessAsync(CalcCoordInfo info, Molecule molecule)
+        public Task<CalcCoordResult> ProcessAsync(CalcCoordInfo info)
         {
             CalcCoordResult retval = new();
             foreach(string moleculeDir in QbcFile.FindDirectories(info.BasePath,"*"))

@@ -42,8 +42,14 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
             {
                 BaseDir = cmdInfo.BasePath
             });
+
+            await this.MolCalcCoordCmd.ProcessAsync(new CalcCoordInfo()
+            {
+                BasePath = cmdInfo.BasePath
+            });
+
             
-            return await Task.FromResult(retval);
+            return retval;
         }
 
 
