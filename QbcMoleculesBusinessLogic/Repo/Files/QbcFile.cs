@@ -26,7 +26,7 @@
 
         public void WriteText(string path, string content)
         {
-            if ( File.Exists(path))
+            if (!File.Exists(path))
             {
                 File.WriteAllText(path, content);
             }

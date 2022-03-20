@@ -11,7 +11,7 @@ namespace QbcMoleculesBusinessLogic.Business.Parser
             if (!String.IsNullOrWhiteSpace(xyzData))
             {
                 retval = new Molecule();   
-                foreach (var line in xyzData.Split(new string[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var line in xyzData.Split(new string[] {"\n"}, StringSplitOptions.RemoveEmptyEntries))
                 {
                     var segments = line.Split(new string[] {" "}, StringSplitOptions.RemoveEmptyEntries);
                     if (segments.Length >= 4)
