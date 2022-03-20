@@ -40,7 +40,12 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                 Molecule? result = XyzParser.Parse(xyzdata);                
                 if (result != null)
                 {
-                    result.NameInfo = Path.GetFileNameWithoutExtension(xyzFile);
+                    string[] nameInfo = Path.GetFileNameWithoutExtension(xyzFile).Split("_", StringSplitOptions.RemoveEmptyEntries);
+                    result.NameInfo = nameInfo.First();
+                    if ( nameInfo.Length > 1 )
+                    {
+                        result.Charge =int.TryParse(nameInfo[1], out int charge) ? charge : 0;
+                    }                    
                     MoleculeFileRepo.WriteToFile(result, Path.Combine(initInfo.BaseDir,result.NameInfo));
                     calcInitResult.Result.Add(result);
                 }
