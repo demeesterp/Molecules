@@ -8,6 +8,7 @@ using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
 using QbcMoleculesBusinessLogic.Repo.Formatter;
 using QbcMoleculesBusinessLogic.Repo.Resources;
+using QbcMoleculesBusinessLogic.UserInteraction;
 
 namespace QbcMoleculesBusinessLogic
 {
@@ -44,6 +45,11 @@ namespace QbcMoleculesBusinessLogic
             // Generators
             services.AddTransient<IXyzGenerator, XyzGenerator>();
             services.AddTransient<IGmsInputGenerator, GmsInputGenerator>();
+
+
+
+            // UserInteraction
+            services.AddTransient<IUserInteractionService, UserInteractionService>();
            
         }
 

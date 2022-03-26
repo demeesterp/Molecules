@@ -51,7 +51,7 @@ namespace QbcMoleculesBusinessLogic.Repo.Formatter
         public TMsg? DeserializeObjectFromString<TMsg>(string msg) where TMsg : class?
         {
             TMsg? retval = default;
-            if ( string.IsNullOrEmpty(msg))
+            if ( !string.IsNullOrEmpty(msg))
             {
                 retval = JsonSerializer.Deserialize<TMsg>(msg, Options);
             }            
