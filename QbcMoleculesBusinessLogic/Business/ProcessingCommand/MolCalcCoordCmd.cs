@@ -70,6 +70,8 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                         ParseGeoDiskChargeFile(info.BasePath, mol, basisset);
                         CreateFukuiFiles(info.BasePath, mol, basisset);
                         ParseFukuiFiles(info.BasePath, mol, basisset);
+
+                        this.MoleculeFileRepo.WriteToFile(mol, info.BasePath);
                     }
                 }
             }
