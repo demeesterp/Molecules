@@ -52,5 +52,29 @@ namespace QbcMoleculesBusinessLogic.UserInteraction
             }
             return retval;
         }
+
+
+        public bool NeedGeoOpt()
+        {
+            bool retval = false;
+            string[] replies = { "yes", "no" ,"y", "n"};
+            string? reply = "";
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Do geoopt before ?");               
+                Console.Write("\r\n (Y)es/(N)o: ");
+                reply = Console.ReadLine();
+                Console.Write($"\r\n Response: {reply}");
+            }
+            while (!replies.Contains(reply?.ToLower()));
+
+            if ( reply == "yes" || reply == "y")
+            {
+                retval = true;
+            }
+
+            return retval;
+        }
     }
 }

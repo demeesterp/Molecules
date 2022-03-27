@@ -24,6 +24,19 @@
             }
         }
 
+        public List<string> ReadLines(string path)
+        {
+            if (File.Exists(path))
+            {
+                return File.ReadAllLines(path).ToList();
+            }
+            else
+            {
+                return new List<string>();
+            }
+        }
+
+
         public void WriteText(string path, string content)
         {
             if (!File.Exists(path))

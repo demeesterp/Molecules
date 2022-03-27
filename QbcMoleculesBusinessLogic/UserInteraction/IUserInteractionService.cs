@@ -12,5 +12,7 @@ namespace QbcMoleculesBusinessLogic.UserInteraction
 
         BasisSet? SelectBasisSet();
 
+        bool NeedGeoOpt();
+
     }
 }
