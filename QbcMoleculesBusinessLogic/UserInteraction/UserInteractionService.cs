@@ -47,7 +47,7 @@ namespace QbcMoleculesBusinessLogic.UserInteraction
             }
             else
             {
-                Console.WriteLine($"Option {selectedItem} selected : {basisSets[selectedItem-1]}");
+                Console.WriteLine($"Option {selectedItem} selected : {basisSets[selectedItem-1].Name}");
                 retval = basisSets[selectedItem - 1];
             }
             return retval;
