@@ -8,5 +8,7 @@ namespace QbcMoleculesBusinessLogic.Repo
 
         void WriteToFile(Molecule? molecule, string path);
 
+        bool MoleculeExists(Molecule? molecule, string path);
+
     }
 }

@@ -46,7 +46,10 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                     {
                         result.Charge =int.TryParse(nameInfo[1], out int charge) ? charge : 0;
                     }                    
-                    MoleculeFileRepo.WriteToFile(result, Path.Combine(initInfo.BaseDir,result.NameInfo));
+                    if ( !MoleculeFileRepo.MoleculeExists(result, initInfo.BaseDir))
+                    {
+                        MoleculeFileRepo.WriteToFile(result, initInfo.BaseDir);
+                    }
                     calcInitResult.Result.Add(result);
                 }
             }

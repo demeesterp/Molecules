@@ -65,7 +65,7 @@ namespace QbcMoleculesBusinessLogic.UserInteraction
                 Console.WriteLine("Do geoopt before ?");               
                 Console.Write("\r\n (Y)es/(N)o: ");
                 reply = Console.ReadLine();
-                Console.Write($"\r\n Response: {reply}");
+                Console.WriteLine($"\r\n Response: {reply}");
             }
             while (!replies.Contains(reply?.ToLower()));
 

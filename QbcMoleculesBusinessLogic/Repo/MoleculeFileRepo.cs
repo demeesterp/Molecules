@@ -41,8 +41,13 @@ namespace QbcMoleculesBusinessLogic.Repo
         {
             if (molecule != null)
             {
-                QbcFile.WriteText($"{path}.json", QbcFormatter.SerializeObjectToString(molecule));
+                QbcFile.WriteText($"{Path.Combine( path, molecule.NameInfo)}.json", QbcFormatter.SerializeObjectToString(molecule));
             }
+        }
+
+        public bool MoleculeExists(Molecule? molecule, string path)
+        {
+            return QbcFile.FileExists($"{Path.Combine(path, molecule?.NameInfo)}.json");
         }
     }
 }

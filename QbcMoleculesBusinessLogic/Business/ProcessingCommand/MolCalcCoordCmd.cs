@@ -50,8 +50,11 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
         public Task<CalcCoordResult> ProcessAsync(CalcCoordInfo info)
         {
             CalcCoordResult retval = new();
+            
             BasisSet? basisset = this.UserInteractionService.SelectBasisSet();
+            
             bool needGeoOpt = this.UserInteractionService.NeedGeoOpt();
+            
             if (basisset != null)
             {
                 foreach (string moleculeFile in QbcFile.FindFiles(info.BasePath, "*.json"))
@@ -64,10 +67,13 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                             CreateGeoOptFile(info.BasePath, mol, basisset);
                             ParseGeoOptFile(info.BasePath, mol, basisset);
                         }
+                        
                         CreateCHelpGChargeFile(info.BasePath, mol, basisset);
                         ParseCHelpGChargeFile(info.BasePath, mol, basisset);
+                        
                         CreateGeoDiskChargeFile(info.BasePath, mol, basisset);
                         ParseGeoDiskChargeFile(info.BasePath, mol, basisset);
+                        
                         CreateFukuiFiles(info.BasePath, mol, basisset);
                         ParseFukuiFiles(info.BasePath, mol, basisset);
 

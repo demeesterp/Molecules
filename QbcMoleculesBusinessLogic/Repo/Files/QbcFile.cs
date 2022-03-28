@@ -12,6 +12,11 @@
             return new List<string>(Directory.EnumerateFiles(path,pattern, SearchOption.TopDirectoryOnly));
         }
 
+        public bool FileExists(string path)
+        {
+            return File.Exists(path);
+        }
+
         public string ReadText(string path)
         {
             if ( File.Exists(path))
