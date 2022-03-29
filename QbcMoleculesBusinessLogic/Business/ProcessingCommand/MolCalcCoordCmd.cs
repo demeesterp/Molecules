@@ -62,22 +62,27 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                     Molecule? mol = this.MoleculeFileRepo.ReadFromFile(moleculeFile);
                     if ( mol != null)
                     {
+                        bool proceed = true;
                         if (needGeoOpt)
                         {
                             CreateGeoOptFile(info.BasePath, mol, basisset);
-                            ParseGeoOptFile(info.BasePath, mol, basisset);
+                            proceed = ParseGeoOptFile(info.BasePath, mol, basisset);
                         }
                         
-                        CreateCHelpGChargeFile(info.BasePath, mol, basisset);
-                        ParseCHelpGChargeFile(info.BasePath, mol, basisset);
-                        
-                        CreateGeoDiskChargeFile(info.BasePath, mol, basisset);
-                        ParseGeoDiskChargeFile(info.BasePath, mol, basisset);
-                        
-                        CreateFukuiFiles(info.BasePath, mol, basisset);
-                        ParseFukuiFiles(info.BasePath, mol, basisset);
+                        if ( proceed )
+                        {
+                            CreateCHelpGChargeFile(info.BasePath, mol, basisset);
+                            ParseCHelpGChargeFile(info.BasePath, mol, basisset);
 
-                        this.MoleculeFileRepo.WriteToFile(mol, info.BasePath);
+                            CreateGeoDiskChargeFile(info.BasePath, mol, basisset);
+                            ParseGeoDiskChargeFile(info.BasePath, mol, basisset);
+
+                            CreateFukuiFiles(info.BasePath, mol, basisset);
+                            ParseFukuiFiles(info.BasePath, mol, basisset);
+
+                            this.MoleculeFileRepo.WriteToFile(mol, info.BasePath);
+                        }
+
                     }
                 }
             }
@@ -97,7 +102,7 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
             }
         }
 
-        private void ParseGeoOptFile(string directory, Molecule molecule, BasisSet basisSet)
+        private bool ParseGeoOptFile(string directory, Molecule molecule, BasisSet basisSet)
         {
             string fileName = $"geoopt_{basisSet.Code}_{molecule.NameInfo}.log";
             var outputFiles = QbcFile.FindFiles(directory, fileName);
@@ -108,6 +113,11 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                 {
                     GordonGmsParser.ParseGeoOpt(lines, molecule);
                 };
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
