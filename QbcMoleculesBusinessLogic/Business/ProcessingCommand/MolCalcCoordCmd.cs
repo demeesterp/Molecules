@@ -112,8 +112,14 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                 if ( GordonGmsParser.CheckValid(lines) )
                 {
                     GordonGmsParser.ParseGeoOpt(lines, molecule);
+                    return true;
+                }
+                else
+                {
+                    this.Logger.LogWarning("Error in gms calculation");
+                    return false;
                 };
-                return true;
+               
             }
             else
             {
@@ -136,7 +142,7 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 
         private void ParseCHelpGChargeFile(string directory, Molecule molecule, BasisSet basisSet)
         {
-            string fileName = $"chelpg_{basisSet.Code}_{molecule.NameInfo}.inp";
+            string fileName = $"chelpg_{basisSet.Code}_{molecule.NameInfo}.log";
             var outputFiles = QbcFile.FindFiles(directory, fileName);
             if (outputFiles.Count == 1)
             {
@@ -145,6 +151,10 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                 if (GordonGmsParser.CheckValid(lines))
                 {
                     GordonGmsParser.ParseCharge(lines, molecule);
+                }
+                else
+                {
+                    this.Logger.LogWarning("Error in gms calculation");
                 };
             }
 
@@ -165,7 +175,7 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 
         private void ParseGeoDiskChargeFile(string directory, Molecule molecule, BasisSet basisSet)
         {
-            string fileName = $"geodisk_{basisSet.Code}_{molecule.NameInfo}.inp";
+            string fileName = $"geodisk_{basisSet.Code}_{molecule.NameInfo}.log";
             var outputFiles = QbcFile.FindFiles(directory, fileName);
             if (outputFiles.Count == 1)
             {
@@ -174,6 +184,10 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                 if (GordonGmsParser.CheckValid(lines))
                 {
                     GordonGmsParser.ParseCharge(lines, molecule);
+                }
+                else
+                {
+                    this.Logger.LogWarning("Error in gms calculation");
                 };
             }
 
@@ -219,6 +233,10 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                 {
                     GordonGmsParser.ParseFukui(neutral, lewisacid, lewisbase, molecule);
                 }
+                else
+                {
+                    this.Logger.LogWarning("Error in gms calculation");
+                };
             }
         }
     }

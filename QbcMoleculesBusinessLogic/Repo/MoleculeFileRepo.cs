@@ -26,28 +26,36 @@ namespace QbcMoleculesBusinessLogic.Repo
             QbcFile = qbcFile;
         }
 
-        public Molecule? ReadFromFile(string path)
+        public Molecule? ReadFromFile(string baseDir, string moleculeName, string basisSetCode)
         {
-            string fileData = QbcFile.ReadText(path);
+            return ReadFromFile( Path.Combine(baseDir, $"{moleculeName}_{basisSetCode}.json"));
+        }
+
+        public Molecule? ReadFromFile(string fileName)
+        {
+            string fileData = QbcFile.ReadText(fileName);
             Molecule? retval = null;
-            if ( !String.IsNullOrEmpty(fileData) )
+            if (!String.IsNullOrEmpty(fileData))
             {
                 retval = QbcFormatter.DeserializeObjectFromString<Molecule>(fileData);
             }
             return retval;
         }
 
-        public void WriteToFile(Molecule? molecule, string path)
+        public void WriteToFile(Molecule? molecule, string baseDir)
         {
             if (molecule != null)
             {
-                QbcFile.WriteText($"{Path.Combine( path, molecule.NameInfo)}.json", QbcFormatter.SerializeObjectToString(molecule));
+                QbcFile.WriteText(Path.Combine(baseDir, $"{molecule.NameInfo}.json"), QbcFormatter.SerializeObjectToString(molecule));
             }
         }
 
-        public bool MoleculeExists(Molecule? molecule, string path)
+        public bool MoleculeExists(Molecule? molecule, string baseDir)
         {
-            return QbcFile.FileExists($"{Path.Combine(path, molecule?.NameInfo)}.json");
+            if (molecule != null) 
+                return QbcFile.FileExists(Path.Combine(baseDir, $"{molecule.NameInfo}.json")); 
+            else 
+                return false;
         }
     }
 }

@@ -4,11 +4,14 @@ namespace QbcMoleculesBusinessLogic.Repo
 {
     public interface IMoleculeFileRepo
     {
-        Molecule? ReadFromFile(string path);
+        Molecule? ReadFromFile(string baseDir, string moleculeName, string basisSetCode);
+        
+        Molecule? ReadFromFile(string fileName);
 
-        void WriteToFile(Molecule? molecule, string path);
 
-        bool MoleculeExists(Molecule? molecule, string path);
+        void WriteToFile(Molecule? molecule, string baseDir);
+
+        bool MoleculeExists(Molecule? molecule, string baseDir);
 
     }
 }

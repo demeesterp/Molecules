@@ -1,10 +1,5 @@
 ﻿using QbcMoleculesBusinessLogic.Data.DataFiles;
 using QbcMoleculesBusinessLogic.Repo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QbcMoleculesBusinessLogic.UserInteraction
 {
@@ -65,12 +60,14 @@ namespace QbcMoleculesBusinessLogic.UserInteraction
                 Console.WriteLine("Do geoopt before ?");               
                 Console.Write("\r\n (Y)es/(N)o: ");
                 reply = Console.ReadLine();
-                Console.WriteLine($"\r\n Response: {reply}");
+                Console.WriteLine();
+                
             }
             while (!replies.Contains(reply?.ToLower()));
 
             if ( reply == "yes" || reply == "y")
             {
+                Console.WriteLine($"You requested a geoopt before");
                 retval = true;
             }
 

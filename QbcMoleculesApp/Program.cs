@@ -19,7 +19,9 @@ if ( processor != null)
         currentTasks.Add(processor.ProcessAsync(cmd));
     }
     await Task.WhenAll(currentTasks);
-    Console.WriteLine("End processing");
+    Console.WriteLine();
+    Console.Write("End processing press any kay to continue :");
+    Console.Read();
 }
 else
 {
