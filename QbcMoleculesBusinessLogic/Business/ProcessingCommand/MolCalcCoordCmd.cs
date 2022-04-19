@@ -50,39 +50,40 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
         public Task<CalcCoordResult> ProcessAsync(CalcCoordInfo info)
         {
             CalcCoordResult retval = new();
-            
-            BasisSet? basisset = this.UserInteractionService.SelectBasisSet();
-            
-            bool needGeoOpt = this.UserInteractionService.NeedGeoOpt();
-            
-            if (basisset != null)
+            var files = QbcFile.FindFiles(info.BasePath, "*.json");
+            if ( files.Any())
             {
-                foreach (string moleculeFile in QbcFile.FindFiles(info.BasePath, "*.json"))
+                BasisSet? basisset = this.UserInteractionService.SelectBasisSet();
+                bool needGeoOpt = this.UserInteractionService.NeedGeoOpt();
+                if (basisset != null)
                 {
-                    Molecule? mol = this.MoleculeFileRepo.ReadFromFile(moleculeFile);
-                    if ( mol != null)
+                    foreach (string moleculeFile in files)
                     {
-                        bool proceed = true;
-                        if (needGeoOpt)
+                        Molecule? mol = this.MoleculeFileRepo.ReadFromFile(moleculeFile);
+                        if (mol != null)
                         {
-                            CreateGeoOptFile(info.BasePath, mol, basisset);
-                            proceed = ParseGeoOptFile(info.BasePath, mol, basisset);
+                            bool proceed = true;
+                            if (needGeoOpt)
+                            {
+                                CreateGeoOptFile(info.BasePath, mol, basisset);
+                                proceed = ParseGeoOptFile(info.BasePath, mol, basisset);
+                            }
+
+                            if (proceed)
+                            {
+                                CreateCHelpGChargeFile(info.BasePath, mol, basisset);
+                                ParseCHelpGChargeFile(info.BasePath, mol, basisset);
+
+                                CreateGeoDiskChargeFile(info.BasePath, mol, basisset);
+                                ParseGeoDiskChargeFile(info.BasePath, mol, basisset);
+
+                                CreateFukuiFiles(info.BasePath, mol, basisset);
+                                ParseFukuiFiles(info.BasePath, mol, basisset);
+
+                                this.MoleculeFileRepo.WriteToFile(mol, info.BasePath);
+                            }
+
                         }
-                        
-                        if ( proceed )
-                        {
-                            CreateCHelpGChargeFile(info.BasePath, mol, basisset);
-                            ParseCHelpGChargeFile(info.BasePath, mol, basisset);
-
-                            CreateGeoDiskChargeFile(info.BasePath, mol, basisset);
-                            ParseGeoDiskChargeFile(info.BasePath, mol, basisset);
-
-                            CreateFukuiFiles(info.BasePath, mol, basisset);
-                            ParseFukuiFiles(info.BasePath, mol, basisset);
-
-                            this.MoleculeFileRepo.WriteToFile(mol, info.BasePath);
-                        }
-
                     }
                 }
             }

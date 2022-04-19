@@ -20,7 +20,7 @@ if ( processor != null)
     }
     await Task.WhenAll(currentTasks);
     Console.WriteLine();
-    Console.Write("End processing press any kay to continue :");
+    Console.Write("End processing press any key to exit :");
     Console.Read();
 }
 else
