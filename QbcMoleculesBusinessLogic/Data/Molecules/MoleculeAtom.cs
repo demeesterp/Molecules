@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QbcMoleculesBusinessLogic.Data.Molecules
+﻿namespace QbcMoleculesBusinessLogic.Data.Molecules
 {
     public class MoleculeAtom
     {
@@ -14,6 +8,14 @@ namespace QbcMoleculesBusinessLogic.Data.Molecules
             Orbitals = new List<MoleculeAtomOrbital>();
             Bonds = new List<MoleculeBond>();
             Symbol = string.Empty;
+        }
+
+
+        public decimal? Distance(MoleculeAtom other)
+        {
+            return (PosX - other.PosX) * (PosX - other.PosX) +
+                         (PosY - other.PosY) * (PosY - other.PosY) +
+                         (PosZ - other.PosZ) * (PosZ - other.PosZ);
         }
 
 

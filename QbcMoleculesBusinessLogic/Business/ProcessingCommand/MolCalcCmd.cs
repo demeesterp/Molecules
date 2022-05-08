@@ -1,5 +1,6 @@
 ﻿using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Data.CmdArgs;
+using QbcMoleculesBusinessLogic.Data.CmdArgs.Processing;
 
 namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 {
@@ -8,8 +9,6 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 
         #region dependencies
 
-        private IQbcLogger              Logger { get; }
-
 
         private IMolCalcInitCmd         MolCalcInitCmd { get; } 
 
@@ -17,20 +16,14 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
         private IMolCalcCoordCmd        MolCalcCoordCmd { get; }
 
 
-        private IMolDataCompilationCmd  MolDataCompilationCmd { get; } 
-
         #endregion
 
 
         public MolCalcCmd(IMolCalcInitCmd molCalcInitCmd,
-                            IMolCalcCoordCmd molCalcCoordCmd, 
-                                IMolDataCompilationCmd molDataCompilationCmd,
-                                  IQbcLogger logger  )
+                            IMolCalcCoordCmd molCalcCoordCmd)
         {
-            Logger = logger;
             MolCalcInitCmd = molCalcInitCmd;
             MolCalcCoordCmd = molCalcCoordCmd;
-            MolDataCompilationCmd = molDataCompilationCmd;
         }
 
 
@@ -38,7 +31,7 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
         {
             MolCalcCmdResult retval = new ();
 
-            CalcInitResult result = await this.MolCalcInitCmd.ProcessAsync(new CalcInitInfo()
+            _ =  await this.MolCalcInitCmd.ProcessAsync(new CalcInitInfo()
             {
                 BaseDir = cmdInfo.BasePath
             });

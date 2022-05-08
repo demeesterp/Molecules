@@ -1,4 +1,4 @@
-﻿using QbcMoleculesBusinessLogic.Data.CmdArgs;
+﻿using QbcMoleculesBusinessLogic.Data.CmdArgs.Processing;
 
 namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 {

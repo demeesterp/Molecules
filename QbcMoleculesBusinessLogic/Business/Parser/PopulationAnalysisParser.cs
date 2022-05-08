@@ -46,11 +46,10 @@ namespace QbcMoleculesBusinessLogic.Business.Parser
         public bool Parse(List<string> input, Molecule molecule)
         {
             bool retval = false;
-            string line = string.Empty;
             bool overallstart = false;
             for (int c = 0; c < input.Count; ++c)
             {
-                line = input[c];
+                var line = input[c];
                 if (line.Contains(GetGeometryResultTag()))
                 {
                     overallstart = true;
@@ -79,17 +78,6 @@ namespace QbcMoleculesBusinessLogic.Business.Parser
 
         #region private helpers
 
-        private bool CompareMoleculeAtomPos(MoleculeAtom lhs, MoleculeAtom rhs)
-        {
-
-            var result = (lhs.PosX - rhs.PosX) * (lhs.PosX - rhs.PosX) +
-                         (lhs.PosY - rhs.PosY) * (lhs.PosY - rhs.PosY) +
-                         (lhs.PosZ - rhs.PosZ) * (lhs.PosZ - rhs.PosZ);
-
-            return result < 0.01M;
-
-        }
-
         private void ParseAOPopulations(List<string> input, Molecule molecule)
         {
             if (this.Start)
@@ -116,12 +104,12 @@ namespace QbcMoleculesBusinessLogic.Business.Parser
                             int orbitalpos = int.Parse(items[0]);
                             string orbitalSymbol = items[3];
 
-                            MoleculeAtom atom = molecule.Atoms.Find(i => i.Position == atomPosition && i.Symbol == atomSymbol);
+                            MoleculeAtom? atom = molecule.Atoms.Find(i => i.Position == atomPosition && i.Symbol == atomSymbol);
                             if (atom != null)
                             {
                                 decimal mulliken = QbcStringConvert.ToDecimal(items[4].Trim());
                                 decimal lowdin = QbcStringConvert.ToDecimal(items[5].Trim());
-                                MoleculeAtomOrbital orbital = atom.Orbitals.Find(i => i.Position == orbitalpos && i.Symbol == orbitalSymbol);
+                                MoleculeAtomOrbital? orbital = atom.Orbitals.Find(i => i.Position == orbitalpos && i.Symbol == orbitalSymbol);
                                 if (orbital != null)
                                 {
                                     switch (GetPopulationStatus())
@@ -228,7 +216,7 @@ namespace QbcMoleculesBusinessLogic.Business.Parser
                         var data = line.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
                         if (data.Length > 1)
                         {
-                            if (data[1].Contains("."))
+                            if (data[1].Contains('.'))
                             {
                                 startBlockcounting = true;
                                 for (int pos = 1; pos < data.Length; ++pos)

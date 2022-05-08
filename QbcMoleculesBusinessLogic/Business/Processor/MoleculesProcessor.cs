@@ -1,6 +1,9 @@
-﻿using QbcMoleculesBusinessLogic.Business.Logging;
+﻿using QbcMoleculesBusinessLogic.Business.AnalysisCommand;
+using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Business.ProcessingCommand;
 using QbcMoleculesBusinessLogic.Data.CmdArgs;
+using QbcMoleculesBusinessLogic.Data.CmdArgs.Analysis;
+using QbcMoleculesBusinessLogic.Data.CmdArgs.Processing;
 using QbcMoleculesBusinessLogic.Data.ProcessCommands;
 
 namespace QbcMoleculesBusinessLogic.Business.Processor
@@ -14,12 +17,17 @@ namespace QbcMoleculesBusinessLogic.Business.Processor
 
         private IMolCalcCmd MolCalcCmd { get; }
 
+        private IMolCalcAnalyseCmd MolCalcAnalysisCmd { get; }
+
         #endregion
 
-        public MoleculesProcessor(IMolCalcCmd molCalcCmd, IQbcLogger logger)
+        public MoleculesProcessor(IMolCalcCmd molCalcCmd,
+                                    IMolCalcAnalyseCmd molCalcAnalyseCmd,
+                                            IQbcLogger logger)
         {
             Logger = logger;
             MolCalcCmd = molCalcCmd;
+            MolCalcAnalysisCmd = molCalcAnalyseCmd;
         }
 
 
@@ -48,7 +56,24 @@ namespace QbcMoleculesBusinessLogic.Business.Processor
                             BasePath = Environment.CurrentDirectory
                         });
                     }                    
-                    await Task.CompletedTask;
+                    break;
+                case QbcCmdName.analysecalculation:
+                    Logger.LogInformation($"Command {qbcCmd.Name}");
+                    param = qbcCmd.Parameters.Find(i => i.Name.ToLower() == "path");
+                    if (param != null)
+                    {
+                        await this.MolCalcAnalysisCmd.ProcessAsync(new MolCalcAnalysisCmdInfo()
+                        {
+                            Path = param.Value
+                        });
+                    }
+                    else
+                    {
+                        await this.MolCalcCmd.ProcessAsync(new MolCalcCmdInfo()
+                        {
+                            BasePath = Environment.CurrentDirectory
+                        });
+                    }
                     break;
                 default:
                     Logger.LogWarning($"Command {qbcCmd.Name} not yet implemented");

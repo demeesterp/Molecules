@@ -1,6 +1,6 @@
 ﻿using QbcMoleculesBusinessLogic.Data.Molecules;
 
-namespace QbcMoleculesBusinessLogic.Data.CmdArgs
+namespace QbcMoleculesBusinessLogic.Data.CmdArgs.Processing
 {
     public class MolCalcCmdResult
     {

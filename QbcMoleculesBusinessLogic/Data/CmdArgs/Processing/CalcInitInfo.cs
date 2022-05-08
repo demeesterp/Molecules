@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QbcMoleculesBusinessLogic.Data.CmdArgs
+namespace QbcMoleculesBusinessLogic.Data.CmdArgs.Processing
 {
-    public class DataCollectionInfo
+    public class CalcInitInfo
     {
+        public string BaseDir { get; set; }
     }
 }

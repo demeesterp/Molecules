@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using QbcMoleculesBusinessLogic.Business.AnalysisCommand;
 using QbcMoleculesBusinessLogic.Business.Generator;
 using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Business.Parser;
@@ -33,10 +34,10 @@ namespace QbcMoleculesBusinessLogic
 
 
             // Commands
-            services.AddTransient<IMolDataCompilationCmd, MolDataCompilationCmd>();
             services.AddTransient<IMolCalcCoordCmd, MolCalcCoordCmd>();
             services.AddTransient<IMolCalcInitCmd, MolCalcInitCmd>();
             services.AddTransient<IMolCalcCmd, MolCalcCmd>();
+            services.AddTransient<IMolCalcAnalyseCmd, MolCalcAnalyseCmd>();
             
             // Parsers
             services.AddTransient<IXyzParser, XyzParser>();

@@ -19,7 +19,7 @@ namespace QbcMoleculesBusinessLogic.Data.ProcessCommands
                 }
                 else if (retval.Count > 0)
                 {
-                    string[] result = cmd.Split('=',StringSplitOptions.RemoveEmptyEntries);
+                    string[] result = cmd.Split('=', StringSplitOptions.RemoveEmptyEntries);
                     if ( result.Length > 1 )
                     {
                         retval.Last().Parameters.Add(new QbcCmdParameter()

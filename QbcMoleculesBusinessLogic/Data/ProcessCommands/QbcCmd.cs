@@ -10,7 +10,8 @@ namespace QbcMoleculesBusinessLogic.Data.ProcessCommands
     public enum QbcCmdName
     {
         dummy = 0,
-        processcalculation = 1
+        processcalculation = 1,
+        analysecalculation = 2
     }
 
 

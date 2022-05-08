@@ -1,6 +1,7 @@
 ﻿using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Business.Parser;
 using QbcMoleculesBusinessLogic.Data.CmdArgs;
+using QbcMoleculesBusinessLogic.Data.CmdArgs.Processing;
 using QbcMoleculesBusinessLogic.Data.Molecules;
 using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
