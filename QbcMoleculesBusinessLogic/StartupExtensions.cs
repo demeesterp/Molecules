@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using QbcMoleculesBusinessLogic.Applications;
 using QbcMoleculesBusinessLogic.Business.AnalysisCommand;
 using QbcMoleculesBusinessLogic.Business.Generator;
 using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Business.Parser;
 using QbcMoleculesBusinessLogic.Business.ProcessingCommand;
-using QbcMoleculesBusinessLogic.Business.Processor;
 using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
 using QbcMoleculesBusinessLogic.Repo.Formatter;
@@ -25,13 +25,8 @@ namespace QbcMoleculesBusinessLogic
             services.AddTransient<IBasissetInfoRepo, BasissetInfoRepo>();
             services.AddTransient<IQbcLogger, QbcLogger>();
             
-            
             // Repositories
             services.AddTransient<IMoleculeFileRepo, MoleculeFileRepo>();
-
-            // Procerssors
-            services.AddTransient<IMoleculesProcessor, MoleculesProcessor>();
-
 
             // Commands
             services.AddTransient<IMolCalcCoordCmd, MolCalcCoordCmd>();
@@ -47,11 +42,13 @@ namespace QbcMoleculesBusinessLogic
             services.AddTransient<IXyzGenerator, XyzGenerator>();
             services.AddTransient<IGmsInputGenerator, GmsInputGenerator>();
 
-
-
             // UserInteraction
             services.AddTransient<IUserInteractionService, UserInteractionService>();
-           
+
+
+            // Applications
+            services.AddSingleton<CalcAnalyseApplication>();
+            services.AddSingleton<MoleculeCalculationApplication>();
         }
 
     }

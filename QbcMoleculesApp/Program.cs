@@ -1,32 +1,23 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using QbcMoleculesBusinessLogic;
-using QbcMoleculesBusinessLogic.Business.Processor;
-using QbcMoleculesBusinessLogic.Data.ProcessCommands;
+﻿
+using QbcMoleculesBusinessLogic.Applications;
+using QbcMoleculesBusinessLogic.Applications.Data;
+using System.Xml.Linq;
 
-Console.WriteLine("Start Services");
-var services = new ServiceCollection();
-services.AddQbcResearch();
-
-var processor = services.BuildServiceProvider()
-    .GetService<IMoleculesProcessor>();
-
-if ( processor != null)
+var cmdArgs = Environment.GetCommandLineArgs();
+string ? applicationName = cmdArgs.FirstOrDefault(i => i.StartsWith("-"));
+if (!String.IsNullOrWhiteSpace(applicationName))
 {
-    Console.WriteLine("Start processing");
-    List<Task> currentTasks = new();
-    foreach (var cmd in QbcCmdInterpreter.BuildCmd(Environment.GetCommandLineArgs()))
+    if (cmdArgs.Length > 2)
     {
-        currentTasks.Add(processor.ProcessAsync(cmd));
+        await ApplicationFactory.Create(applicationName).RunAsync(new ApplicationParameters(cmdArgs.Skip(2).ToArray()));
     }
-    await Task.WhenAll(currentTasks);
-    Console.WriteLine();
-    Console.Write("End processing press any key to exit :");
-    Console.Read();
+    else
+    {
+        await ApplicationFactory.Create(applicationName).RunAsync(new ApplicationParameters());
+    }
 }
 else
 {
-    Console.WriteLine("Failed to start services");
+    await ApplicationFactory.Create().RunAsync(new ApplicationParameters(cmdArgs));
 }
-
-Console.ReadLine();
 
