@@ -1,7 +1,6 @@
 ﻿
 using QbcMoleculesBusinessLogic.Applications;
 using QbcMoleculesBusinessLogic.Applications.Data;
-using System.Xml.Linq;
 
 var cmdArgs = Environment.GetCommandLineArgs();
 string ? applicationName = cmdArgs.FirstOrDefault(i => i.StartsWith("-"));
