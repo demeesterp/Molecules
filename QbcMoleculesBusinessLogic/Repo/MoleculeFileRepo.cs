@@ -53,7 +53,7 @@ namespace QbcMoleculesBusinessLogic.Repo
         public bool MoleculeExists(Molecule? molecule, string baseDir)
         {
             if (molecule != null) 
-                return QbcFile.FileExists(Path.Combine(baseDir, $"{molecule.NameInfo}.json")); 
+                return QbcFile.PathExists(Path.Combine(baseDir, $"{molecule.NameInfo}.json")); 
             else 
                 return false;
         }

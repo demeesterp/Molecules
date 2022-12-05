@@ -2,7 +2,7 @@
 using QbcMoleculesBusinessLogic.Applications;
 using QbcMoleculesBusinessLogic.Applications.Data;
 
-var cmdArgs = Environment.GetCommandLineArgs();
+string[] cmdArgs = Environment.GetCommandLineArgs();
 string ? applicationName = cmdArgs.FirstOrDefault(i => i.StartsWith("-"));
 if (!String.IsNullOrWhiteSpace(applicationName))
 {

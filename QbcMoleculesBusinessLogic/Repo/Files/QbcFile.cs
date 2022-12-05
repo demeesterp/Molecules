@@ -12,9 +12,9 @@
             return new List<string>(Directory.EnumerateFiles(path,pattern, SearchOption.TopDirectoryOnly));
         }
 
-        public bool FileExists(string path)
+        public bool PathExists(string path)
         {
-            return File.Exists(path);
+            return Path.Exists(path);  
         }
 
         public string ReadText(string path)

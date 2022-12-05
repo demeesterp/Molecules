@@ -28,15 +28,22 @@ namespace QbcMoleculesBusinessLogic.Business.AnalysisCommand
         public async Task<MolCalcAnalysisCmdResult> ProcessAsync(MolCalcAnalysisCmdInfo cmdInfo)
         {
             MolCalcAnalysisCmdResult retval = new MolCalcAnalysisCmdResult();
-
-            foreach(var file in QbcFiles.FindFiles(cmdInfo.Path, "*.json"))
+            if ( QbcFiles.PathExists(cmdInfo.Path) )
             {
-                Molecule? result = MoleculeFileRepo.ReadFromFile(file);
-                if ( result != null)
+                foreach (var file in QbcFiles.FindFiles(cmdInfo.Path, "*.json"))
                 {
+                    Molecule? result = MoleculeFileRepo.ReadFromFile(file);
+                    if (result != null)
+                    {
 
+                    }
                 }
             }
+            else
+            {
+                Logger.LogError($"Path {cmdInfo.Path} does not exists");
+            }
+            
             return await Task.FromResult(retval);
         }
     }

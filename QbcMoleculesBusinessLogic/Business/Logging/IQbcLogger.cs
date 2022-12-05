@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QbcMoleculesBusinessLogic.Business.Logging
+﻿namespace QbcMoleculesBusinessLogic.Business.Logging
 {
     public interface IQbcLogger
     {
@@ -16,6 +10,10 @@ namespace QbcMoleculesBusinessLogic.Business.Logging
 
         void LogError(Exception e, string message);
 
+        void LogError(string message);
+
         void LogCritical(Exception e, string message);
+
+        void LogCritical(string message);
     }
 }

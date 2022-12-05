@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace QbcMoleculesBusinessLogic.Business.Logging
 {
@@ -13,9 +9,19 @@ namespace QbcMoleculesBusinessLogic.Business.Logging
             Console.Error.WriteLine($"Critical : {message} Exception {WriteException(e)}");
         }
 
+        public void LogCritical(string message)
+        {
+            Console.Error.WriteLine($"Critical : {message}");
+        }
+
         public void LogError(Exception e, string message)
         {
             Console.Error.WriteLine($"Error : {message} Exception {WriteException(e)}");
+        }
+
+        public void LogError(string message)
+        {
+            Console.Error.WriteLine($"Error : {message}");
         }
 
         public void LogInformation(string message)
