@@ -1,6 +1,5 @@
 ﻿using QbcMoleculesBusinessLogic.Applications.Data;
 using QbcMoleculesBusinessLogic.Business.AnalysisCommand;
-using QbcMoleculesBusinessLogic.Data.CmdArgs.Analysis;
 
 namespace QbcMoleculesBusinessLogic.Applications
 {
@@ -30,17 +29,11 @@ namespace QbcMoleculesBusinessLogic.Applications
             var parameter = parameters.Find("path");
             if ( parameter != null)
             {
-                await MolCalcAnalyseCmd.ProcessAsync(new MolCalcAnalysisCmdInfo()
-                {
-                    Path = parameter.Value
-                });
+                await MolCalcAnalyseCmd.ProcessAsync(parameter.Value);
             }
             else
             {
-                await MolCalcAnalyseCmd.ProcessAsync(new MolCalcAnalysisCmdInfo()
-                {
-                    Path = Environment.CurrentDirectory
-                });
+                await MolCalcAnalyseCmd.ProcessAsync(Environment.CurrentDirectory);
             }
             Console.WriteLine("Press any key to stop the application");
             Console.ReadLine();

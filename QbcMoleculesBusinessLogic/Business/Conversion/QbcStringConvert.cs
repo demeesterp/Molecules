@@ -4,9 +4,9 @@ namespace QbcMoleculesBusinessLogic.Business.Conversion
 {
     public static class QbcStringConvert
     {
-        public static Decimal ToDecimal(string input)
+        public static decimal ToDecimal(string input)
         {
-            if (!Decimal.TryParse(input.Replace(",", "."),
+            if (!decimal.TryParse(input.Replace(",", "."),
                                     NumberStyles.Float,
                                     CultureInfo.CreateSpecificCulture("en-US"),
                                     out decimal retval))

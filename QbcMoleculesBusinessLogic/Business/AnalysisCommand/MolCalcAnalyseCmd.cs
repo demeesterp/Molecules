@@ -1,5 +1,4 @@
 ﻿using QbcMoleculesBusinessLogic.Business.Logging;
-using QbcMoleculesBusinessLogic.Data.CmdArgs.Analysis;
 using QbcMoleculesBusinessLogic.Data.Molecules;
 using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
@@ -25,12 +24,11 @@ namespace QbcMoleculesBusinessLogic.Business.AnalysisCommand
             MoleculeFileRepo = moleculeFileRepo;
         }
 
-        public async Task<MolCalcAnalysisCmdResult> ProcessAsync(MolCalcAnalysisCmdInfo cmdInfo)
+        public async Task ProcessAsync(string cmdInfo)
         {
-            MolCalcAnalysisCmdResult retval = new MolCalcAnalysisCmdResult();
-            if ( QbcFiles.PathExists(cmdInfo.Path) )
+            if ( QbcFiles.PathExists(cmdInfo) )
             {
-                foreach (var file in QbcFiles.FindFiles(cmdInfo.Path, "*.json"))
+                foreach (var file in QbcFiles.FindFiles(cmdInfo, "*.json"))
                 {
                     Molecule? result = MoleculeFileRepo.ReadFromFile(file);
                     if (result != null)
@@ -41,10 +39,10 @@ namespace QbcMoleculesBusinessLogic.Business.AnalysisCommand
             }
             else
             {
-                Logger.LogError($"Path {cmdInfo.Path} does not exists");
+                Logger.LogError($"Path {cmdInfo} does not exists");
             }
-            
-            return await Task.FromResult(retval);
+
+            await Task.CompletedTask;
         }
     }
 }

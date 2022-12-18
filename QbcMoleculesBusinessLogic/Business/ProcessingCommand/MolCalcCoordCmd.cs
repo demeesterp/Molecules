@@ -1,8 +1,6 @@
 ﻿using QbcMoleculesBusinessLogic.Business.Generator;
 using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Business.Parser;
-using QbcMoleculesBusinessLogic.Data.CmdArgs;
-using QbcMoleculesBusinessLogic.Data.CmdArgs.Processing;
 using QbcMoleculesBusinessLogic.Data.DataFiles;
 using QbcMoleculesBusinessLogic.Data.Molecules;
 using QbcMoleculesBusinessLogic.Repo;
@@ -48,10 +46,10 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 
 
 
-        public Task<CalcCoordResult> ProcessAsync(CalcCoordInfo info)
+        public Task<Molecule> ProcessAsync(string info)
         {
-            CalcCoordResult retval = new();
-            var files = QbcFile.FindFiles(info.BasePath, "*.json");
+            Molecule retval = new();
+            var files = QbcFile.FindFiles(info, "*.json");
             if ( files.Any())
             {
                 BasisSet? basisset = this.UserInteractionService.SelectBasisSet();
@@ -66,22 +64,22 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                             bool proceed = true;
                             if (needGeoOpt)
                             {
-                                CreateGeoOptFile(info.BasePath, mol, basisset);
-                                proceed = ParseGeoOptFile(info.BasePath, mol, basisset);
+                                CreateGeoOptFile(info, mol, basisset);
+                                proceed = ParseGeoOptFile(info, mol, basisset);
                             }
 
                             if (proceed)
                             {
-                                CreateCHelpGChargeFile(info.BasePath, mol, basisset);
-                                ParseCHelpGChargeFile(info.BasePath, mol, basisset);
+                                CreateCHelpGChargeFile(info, mol, basisset);
+                                ParseCHelpGChargeFile(info, mol, basisset);
 
-                                CreateGeoDiskChargeFile(info.BasePath, mol, basisset);
-                                ParseGeoDiskChargeFile(info.BasePath, mol, basisset);
+                                CreateGeoDiskChargeFile(info, mol, basisset);
+                                ParseGeoDiskChargeFile(info, mol, basisset);
 
-                                CreateFukuiFiles(info.BasePath, mol, basisset);
-                                ParseFukuiFiles(info.BasePath, mol, basisset);
+                                CreateFukuiFiles(info, mol, basisset);
+                                ParseFukuiFiles(info, mol, basisset);
 
-                                this.MoleculeFileRepo.WriteToFile(mol, info.BasePath);
+                                this.MoleculeFileRepo.WriteToFile(mol, info);
                             }
 
                         }

@@ -1,11 +1,11 @@
-﻿using QbcMoleculesBusinessLogic.Data.CmdArgs.Processing;
+﻿using QbcMoleculesBusinessLogic.Data.Molecules;
 
 namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 {
     public interface IMolCalcCoordCmd
     {
 
-        Task<CalcCoordResult> ProcessAsync(CalcCoordInfo info);
+        Task<Molecule> ProcessAsync(string info);
 
     }
 }

@@ -1,6 +1,4 @@
-﻿using QbcMoleculesBusinessLogic.Business.Logging;
-using QbcMoleculesBusinessLogic.Data.CmdArgs;
-using QbcMoleculesBusinessLogic.Data.CmdArgs.Processing;
+﻿using QbcMoleculesBusinessLogic.Data.Molecules;
 
 namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
 {
@@ -27,19 +25,13 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
         }
 
 
-        public async Task<MolCalcCmdResult> ProcessAsync(MolCalcCmdInfo cmdInfo)
+        public async Task<List<Molecule>> ProcessAsync(string cmdInfo)
         {
-            MolCalcCmdResult retval = new ();
+            List<Molecule> retval = new ();
 
-            _ =  await this.MolCalcInitCmd.ProcessAsync(new CalcInitInfo()
-            {
-                BaseDir = cmdInfo.BasePath
-            });
+            _ =  await this.MolCalcInitCmd.ProcessAsync(cmdInfo);
 
-            await this.MolCalcCoordCmd.ProcessAsync(new CalcCoordInfo()
-            {
-                BasePath = cmdInfo.BasePath
-            });
+            await this.MolCalcCoordCmd.ProcessAsync(cmdInfo);
 
             
             return retval;

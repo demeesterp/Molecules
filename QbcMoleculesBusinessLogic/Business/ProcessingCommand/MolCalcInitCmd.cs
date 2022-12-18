@@ -1,7 +1,5 @@
 ﻿using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Business.Parser;
-using QbcMoleculesBusinessLogic.Data.CmdArgs;
-using QbcMoleculesBusinessLogic.Data.CmdArgs.Processing;
 using QbcMoleculesBusinessLogic.Data.Molecules;
 using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
@@ -31,11 +29,11 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
             MoleculeFileRepo = moleculeFileRepo ?? throw new ArgumentNullException(nameof(moleculeFileRepo));
         }
 
-        public async Task<CalcInitResult> ProcessAsync(CalcInitInfo initInfo)
+        public async Task<List<Molecule>> ProcessAsync(string initInfo)
         {
-            QbcLogger.LogInformation($"MolCalcInit {initInfo.BaseDir}");
-            CalcInitResult calcInitResult = new();
-            foreach (string xyzFile in QbcFile.FindFiles(initInfo.BaseDir, "*.xyz"))
+            QbcLogger.LogInformation($"MolCalcInit {initInfo}");
+            List<Molecule> molecules = new();
+            foreach (string xyzFile in QbcFile.FindFiles(initInfo, "*.xyz"))
             {
                 string xyzdata = QbcFile.ReadText(xyzFile);
                 Molecule? result = XyzParser.Parse(xyzdata);                
@@ -47,14 +45,14 @@ namespace QbcMoleculesBusinessLogic.Business.ProcessingCommand
                     {
                         result.Charge =int.TryParse(nameInfo[1], out int charge) ? charge : 0;
                     }                    
-                    if ( !MoleculeFileRepo.MoleculeExists(result, initInfo.BaseDir))
+                    if ( !MoleculeFileRepo.MoleculeExists(result, initInfo))
                     {
-                        MoleculeFileRepo.WriteToFile(result, initInfo.BaseDir);
+                        MoleculeFileRepo.WriteToFile(result, initInfo);
                     }
-                    calcInitResult.Result.Add(result);
+                    molecules.Add(result);
                 }
             }
-            return await Task.FromResult(calcInitResult);
+            return await Task.FromResult(molecules);
         }
     }
 }

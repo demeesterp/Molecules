@@ -2,7 +2,6 @@
 {
     public class ApplicationParameterItem
     {
-
         public ApplicationParameterItem() { }
 
         public ApplicationParameterItem(string input)
@@ -19,20 +18,13 @@
                 Value = String.Empty;
             }
         }
-
-
         public string Name { get; set; } = string.Empty;
 
         public string Value { get; set; } = string.Empty;
-
-
-
-
 
         public override string ToString()
         {
             return $"({Name}:{Value})";
         }
-
     }
 }
