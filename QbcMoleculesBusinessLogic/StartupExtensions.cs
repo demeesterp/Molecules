@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using QbcMoleculesBusinessLogic.Applications;
-using QbcMoleculesBusinessLogic.Business.AnalysisCommand;
-using QbcMoleculesBusinessLogic.Business.Generator;
+using QbcMoleculesBusinessLogic.Applications.MoleculeCalculation;
+using QbcMoleculesBusinessLogic.Applications.MoleculeCalculation.Services.Generator;
+using QbcMoleculesBusinessLogic.Applications.MoleculeCalculation.Services.Parser;
+using QbcMoleculesBusinessLogic.Applications.MoleculeCalculation.Services.ProcessingCommand;
+using QbcMoleculesBusinessLogic.Applications.ResultAnalysis;
+using QbcMoleculesBusinessLogic.Applications.ResultAnalysis.Services.AnalysisCommand;
 using QbcMoleculesBusinessLogic.Business.Logging;
-using QbcMoleculesBusinessLogic.Business.Parser;
-using QbcMoleculesBusinessLogic.Business.ProcessingCommand;
 using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
 using QbcMoleculesBusinessLogic.Repo.Formatter;
@@ -47,7 +48,7 @@ namespace QbcMoleculesBusinessLogic
 
 
             // Applications
-            services.AddSingleton<CalcAnalyseApplication>();
+            services.AddSingleton<ResultAnalyseApplication>();
             services.AddSingleton<MoleculeCalculationApplication>();
         }
 

@@ -1,22 +1,17 @@
-﻿
-using QbcMoleculesBusinessLogic.Applications;
-using QbcMoleculesBusinessLogic.Applications.Data;
+﻿using QbcMoleculesBusinessLogic.Applications;
 
 string[] cmdArgs = Environment.GetCommandLineArgs();
 string ? applicationName = cmdArgs.FirstOrDefault(i => i.StartsWith("-"));
-if (!String.IsNullOrWhiteSpace(applicationName))
-{
-    if (cmdArgs.Length > 2)
-    {
+
+if (!string.IsNullOrWhiteSpace(applicationName)) {
+    if (cmdArgs.Length > 2) {
         await ApplicationFactory.Create(applicationName).RunAsync(new ApplicationParameters(cmdArgs.Skip(2).ToArray()));
     }
-    else
-    {
+    else {
         await ApplicationFactory.Create(applicationName).RunAsync(new ApplicationParameters());
     }
 }
-else
-{
+else {
     await ApplicationFactory.Create().RunAsync(new ApplicationParameters(cmdArgs));
 }
 

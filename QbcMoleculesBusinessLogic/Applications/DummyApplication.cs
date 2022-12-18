@@ -1,6 +1,4 @@
-﻿using QbcMoleculesBusinessLogic.Applications.Data;
-
-namespace QbcMoleculesBusinessLogic.Applications
+﻿namespace QbcMoleculesBusinessLogic.Applications
 {
     public class DummyApplication : Application
     {

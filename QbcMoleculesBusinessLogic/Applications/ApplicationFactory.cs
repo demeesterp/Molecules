@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using QbcMoleculesBusinessLogic.Applications.MoleculeCalculation;
+using QbcMoleculesBusinessLogic.Applications.ResultAnalysis;
 
 namespace QbcMoleculesBusinessLogic.Applications
 {
@@ -16,7 +18,7 @@ namespace QbcMoleculesBusinessLogic.Applications
             }
             else if (application == "analysecalculation")
             {
-                var applicationService = services.BuildServiceProvider().GetService<CalcAnalyseApplication>();
+                var applicationService = services.BuildServiceProvider().GetService<ResultAnalyseApplication>();
                 if (applicationService == null)
                 {
                     throw new ArgumentNullException(applicationName);
