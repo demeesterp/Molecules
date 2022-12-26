@@ -1,9 +1,11 @@
-﻿using QbcMoleculesBusinessLogic.Business.Logging;
+﻿using QbcMoleculesBusinessLogic.Applications.ResultAnalysis.Services.Analysers;
+using QbcMoleculesBusinessLogic.Applications.ResultAnalysis.Services.AnalysisCommand;
+using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Data.Molecules;
 using QbcMoleculesBusinessLogic.Repo;
 using QbcMoleculesBusinessLogic.Repo.Files;
 
-namespace QbcMoleculesBusinessLogic.Applications.ResultAnalysis.Services.AnalysisCommand
+namespace QbcMoleculesBusinessLogic.Applications.ResultAnalysis.Services
 {
     public class MolCalcAnalyseCmd : IMolCalcAnalyseCmd
     {
@@ -33,7 +35,7 @@ namespace QbcMoleculesBusinessLogic.Applications.ResultAnalysis.Services.Analysi
                     Molecule? result = MoleculeFileRepo.ReadFromFile(file);
                     if (result != null)
                     {
-
+                        OrbitalAnalyser.Analyse(result);
                     }
                 }
             }

@@ -1,6 +1,6 @@
 ﻿namespace QbcMoleculesBusinessLogic.Data.Molecules
 {
-    public class MoleculeAtom
+    public class MoleculeAtom : IMoleculeItem
     {
 
         public MoleculeAtom()

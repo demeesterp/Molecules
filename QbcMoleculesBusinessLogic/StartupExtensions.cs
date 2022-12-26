@@ -4,6 +4,7 @@ using QbcMoleculesBusinessLogic.Applications.MoleculeCalculation.Services.Genera
 using QbcMoleculesBusinessLogic.Applications.MoleculeCalculation.Services.Parser;
 using QbcMoleculesBusinessLogic.Applications.MoleculeCalculation.Services.ProcessingCommand;
 using QbcMoleculesBusinessLogic.Applications.ResultAnalysis;
+using QbcMoleculesBusinessLogic.Applications.ResultAnalysis.Services;
 using QbcMoleculesBusinessLogic.Applications.ResultAnalysis.Services.AnalysisCommand;
 using QbcMoleculesBusinessLogic.Business.Logging;
 using QbcMoleculesBusinessLogic.Repo;

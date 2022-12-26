@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QbcMoleculesBusinessLogic.Data.Molecules
+﻿namespace QbcMoleculesBusinessLogic.Data.Molecules
 {
     public enum ElPotType
     {
@@ -14,7 +8,7 @@ namespace QbcMoleculesBusinessLogic.Data.Molecules
     }
 
 
-    public class MoleculeElpot
+    public class MoleculeElpot : IMoleculeItem
     {
         public int Id { get; set; }
         public int MoleculeID { get; set; }
