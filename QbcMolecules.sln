@@ -12,7 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QbcMoleculesTest", "QbcMoleculesTest\QbcMoleculesTest.csproj", "{82989A71-3A46-42E1-92FF-6477A3B1CCCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QbcMoleculesTest", "QbcMoleculesTest\QbcMoleculesTest.csproj", "{82989A71-3A46-42E1-92FF-6477A3B1CCCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoleculesWeb", "MoleculesWeb\MoleculesWeb.csproj", "{80E1579F-3861-4D3C-BDA6-378FE1A6A8F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{82989A71-3A46-42E1-92FF-6477A3B1CCCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82989A71-3A46-42E1-92FF-6477A3B1CCCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82989A71-3A46-42E1-92FF-6477A3B1CCCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80E1579F-3861-4D3C-BDA6-378FE1A6A8F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80E1579F-3861-4D3C-BDA6-378FE1A6A8F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80E1579F-3861-4D3C-BDA6-378FE1A6A8F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80E1579F-3861-4D3C-BDA6-378FE1A6A8F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
